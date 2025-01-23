@@ -293,7 +293,7 @@ const App = () => {
                   Phone
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="userPhone"
                   name="phone"
@@ -301,6 +301,8 @@ const App = () => {
                   onChange={handleAddInputChange}
                   placeholder="Enter phone"
                   required
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number"
                 />
               </div>
               <div className="mb-3">
