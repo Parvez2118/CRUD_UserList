@@ -20,7 +20,16 @@ const App = () => {
   };
 
   const handleSaveUser = async () => {
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     if (formData.name && formData.email && formData.phone && formData.company) {
+      if (!emailRegex.test(formData.email)) {
+        alert("Please enter a valid email address");
+        return;
+      }
+      if (formData.phone.length<10 || formData.phone.length>10) {
+        alert("Please enter a valid 10 Digit Phone Number");
+        return;
+      }
       try {
         const response = await fetch("https://jsonplaceholder.typicode.com/users", {
           method: "POST",
@@ -275,6 +284,8 @@ const App = () => {
                   onChange={handleAddInputChange}
                   placeholder="Enter email"
                   required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" 
+                  title="Please enter a valid email address"
                 />
               </div>
               <div className="mb-3">
